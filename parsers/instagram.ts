@@ -17,7 +17,6 @@ export class InstagramParser {
 
   async parse(username: string) {
     const data = await this.fetch(username);
-    console.log(" >>> DATA", data);
     const document = parse(data);
     const userInfoRaw =
       document
@@ -27,9 +26,8 @@ export class InstagramParser {
     const followerCount = userInfo?.match(/(\d+) Followers/)?.[1];
     const postsCount = userInfo?.match(/(\d+) Posts/)?.[1];
     return {
-      raw: userInfo,
       followers: followerCount,
-      likes: "0",
+      likes: null,
       posts: postsCount,
     };
   }

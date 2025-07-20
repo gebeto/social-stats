@@ -1,10 +1,6 @@
 import { parse } from "node-html-parser";
 
 export class TikTokParser {
-  constructor() {
-    // Initialization code if needed
-  }
-
   async fetch(username: string) {
     const url = `https://www.tiktok.com/@${username}`;
     const response = await fetch(url);
@@ -27,6 +23,7 @@ export class TikTokParser {
     return {
       followers: stats.followerCount,
       likes: stats.heartCount,
+      posts: stats.videoCount,
     };
   }
 }

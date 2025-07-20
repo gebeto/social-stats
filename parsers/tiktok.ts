@@ -21,6 +21,7 @@ export class TikTokParser {
       json["__DEFAULT_SCOPE__"]["webapp.user-detail"]["userInfo"];
     const stats = userInfo["statsV2"];
     return {
+      username: username,
       followers: stats.followerCount,
       likes: stats.heartCount,
       posts: stats.videoCount,

@@ -5,6 +5,7 @@ export class InstagramParser {
     const url = `https://www.instagram.com/${username}`;
     const response = await fetch(url, {
       headers: {
+        "accept-language": "en-US,en;q=0.9",
         "User-Agent":
           "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
       },
@@ -26,9 +27,10 @@ export class InstagramParser {
     const followerCount = userInfo?.match(/(\d+) Followers/)?.[1];
     const postsCount = userInfo?.match(/(\d+) Posts/)?.[1];
     return {
-      followers: followerCount,
+      username: username,
+      followers: followerCount ?? 0,
       likes: null,
-      posts: postsCount,
+      posts: postsCount ?? 0,
     };
   }
 }

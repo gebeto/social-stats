@@ -18,6 +18,7 @@ export class YoutubeParser {
     const subscribers = data.match(/"(\d+) subscribers"/)?.[1];
     const posts = data.match(/"(\d+) videos"/)?.[1];
     return {
+      username: username,
       followers: subscribers,
       likes: null,
       posts: posts,

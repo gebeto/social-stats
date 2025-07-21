@@ -3,11 +3,24 @@ import { parse } from "node-html-parser";
 export class RedditParser {
   async fetch(username: string) {
     const url = `https://www.reddit.com/user/${username}/about.json`;
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        accept:
+          "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+        "accept-language":
+          "en-US,en;q=0.9,en-GB;q=0.8,zh-CN;q=0.7,zh;q=0.6,uk;q=0.5",
+        "cache-control": "max-age=0",
+        priority: "u=0, i",
+        "sec-fetch-dest": "document",
+        "sec-fetch-mode": "navigate",
+        "sec-fetch-site": "none",
+        "sec-fetch-user": "?1",
+        "upgrade-insecure-requests": "1",
+      },
+      body: null,
+      method: "GET",
+    });
     console.log(response);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data from ${url}`);
-    }
     return response.json();
   }
 

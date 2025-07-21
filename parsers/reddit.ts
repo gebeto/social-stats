@@ -16,8 +16,7 @@ export class RedditParser {
         "sec-fetch-site": "none",
         "sec-fetch-user": "?1",
         "upgrade-insecure-requests": "1",
-        "User-Agent":
-          "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+        "User-Agent": "Googlebot/2.1 (http://www.google.com/bot.html)",
       },
       body: null,
       method: "GET",
@@ -27,11 +26,13 @@ export class RedditParser {
   }
 
   async parse(username: string) {
-    const data = await this.fetch(username);
+    // const data = await this.fetch(username);
     return {
       username: username,
-      postKarma: data.data.link_karma.toString() || "0",
-      commentKarma: data.data.comment_karma.toString() || "0",
+      // postKarma: data.data.link_karma.toString() || "0",
+      // commentKarma: data.data.comment_karma.toString() || "0",
+      postKarma: "0",
+      commentKarma: "0",
     };
   }
 }

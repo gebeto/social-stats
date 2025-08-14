@@ -23,10 +23,8 @@ export class InstagramParser {
       document
         .querySelector("meta[property='og:description']")
         ?.getAttribute("content") ?? "";
-    const userInfo = userInfoRaw?.replace(/\s+/g, " ").trim();
-    const followerCount = userInfo
-      ?.match(/([\d,]+) Followers/)?.[1]
-      .replace(/,/g, "");
+    const userInfo = userInfoRaw?.replace(/\s+/g, " ").replace(/,/g, "").trim();
+    const followerCount = userInfo?.match(/(\d+) Followers/)?.[1];
     const postsCount = userInfo?.match(/(\d+) Posts/)?.[1];
     return {
       username: username,

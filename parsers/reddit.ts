@@ -35,4 +35,17 @@ export class RedditParser {
       commentKarma: "0",
     };
   }
+
+  async parseUI(title: string, username: string) {
+    const data = await this.parse(username);
+
+    return {
+      title: title,
+      username: username,
+      fields: [
+        { name: "Post Karma", value: data.postKarma.toString() },
+        { name: "Comment Karma", value: data.commentKarma.toString() },
+      ],
+    };
+  }
 }

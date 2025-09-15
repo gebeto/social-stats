@@ -33,4 +33,17 @@ export class InstagramParser {
       posts: postsCount ?? 0,
     };
   }
+
+  async parseUI(title: string, username: string) {
+    const data = await this.parse(username);
+
+    return {
+      title: title,
+      username: username,
+      fields: [
+        { name: "Followers", value: data.followers.toString() },
+        { name: "Videos", value: data.posts.toString() },
+      ],
+    };
+  }
 }

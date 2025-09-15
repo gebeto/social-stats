@@ -19,9 +19,22 @@ export class YoutubeParser {
     const posts = data.match(/"(\d+) videos"/)?.[1];
     return {
       username: username,
-      followers: subscribers,
+      followers: subscribers ?? 0,
       likes: null,
-      posts: posts,
+      posts: posts ?? 0,
+    };
+  }
+
+  async parseUI(title: string, username: string) {
+    const data = await this.parse(username);
+
+    return {
+      title: title,
+      username: username,
+      fields: [
+        { name: "Followers", value: data.followers.toString() },
+        { name: "Videos", value: data.posts.toString() },
+      ],
     };
   }
 }
